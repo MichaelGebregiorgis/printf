@@ -5,7 +5,6 @@
 
 /**
  * _printf - produces output according to a format.
- * 7,21,18,32
  * Need to handle c, s, and % conversion specifiers.
  *
  * @format: Data type
@@ -20,7 +19,7 @@ int _printf(const char *format, ...)
 
 	va_start(lst_args, format);
 
-	for (;*format != '\0'; format++)
+	for (; *format != '\0'; format++)
 	{
 		if (*format == '%')
 		{
@@ -33,11 +32,9 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 				const char *str = va_arg(lst_args, const char *);
-				while (*str)
+				for (; *str; str++)
 				{
 					_putchar(*str);
-					str++;
-
 					count_char++;
 				}
 			}
@@ -59,7 +56,7 @@ int _printf(const char *format, ...)
 			count_char += 1;
 		}
 	}
-	
+
 	va_end(lst_args);
 	return (count_char);
 }
