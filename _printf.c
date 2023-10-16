@@ -1,4 +1,3 @@
-#include <string.h>
 #include "main.h"
 #include <stdarg.h>
 #include <stdio.h>
@@ -14,29 +13,24 @@
 
 int _printf(const char *format, ...)
 {
-	unsigned int count_char = 0, inc = 0;
+	unsigned int count_char = 0;
 	va_list lst_args;
-
-	if (format == NULL)
-	{
-		return (-1);
-	}
+	
 	va_start(lst_args, format);
 
-	while (format[inc] != '\0')
+	for (;*format != '\0'; format++)
 	{
-		if (format[inc] == '%')
+		if (*format == '%')
 		{
-			inc++;
-			if (format[inc] == 'c')
+			format += 1;
+			if (*format == 'c')
 			{
 				_putchar(va_arg(lst_args, int));
 				count_char++;
 			}
-			else if (format[inc] == 's')
+			else if (*format == 's')
 			{
 				const char *str = va_arg(lst_args, const char *);
-
 				while (*str)
 				{
 					_putchar(*str);
@@ -44,14 +38,25 @@ int _printf(const char *format, ...)
 					count_char++;
 				}
 			}
-			else if (format[inc] == '%')
+			else if (*format == '%')
 			{
 				_putchar('%');
 				count_char++;
 			}
+			else
+			{
+				_putchar('%');
+				_putchar(*format);
+				count_char += 2;
+			}
 		}
-		inc++;
+		else
+		{
+			_putchar(*format);
+			count_char += 1;
+		}
 	}
+
 	va_end(lst_args);
 	return (count_char);
 }
