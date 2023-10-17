@@ -12,13 +12,13 @@
  * Return: the number of characters printed
  */
 
+
 int _printf(const char *format, ...)
 {
 	unsigned int count_char = 0;
 	va_list lst_args;
 
 	va_start(lst_args, format);
-
 	for (; *format != '\0'; format++)
 	{
 		if (*format == '%')
@@ -32,6 +32,7 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 				const char *str = va_arg(lst_args, const char *);
+
 				for (; *str; str++)
 				{
 					_putchar(*str);
@@ -56,7 +57,6 @@ int _printf(const char *format, ...)
 			count_char += 1;
 		}
 	}
-
 	va_end(lst_args);
 	return (count_char);
 }
