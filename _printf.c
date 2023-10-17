@@ -32,6 +32,7 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 				const char *str = va_arg(lst_args, const char *);
+
 				for (; *str; str++)
 				{
 					_putchar(*str);
