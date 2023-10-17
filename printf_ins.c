@@ -13,6 +13,7 @@ void print_int(int num)
 {
 	int count = 0;
 	int rev = 0;
+
 	if (num == 0)
 	{
 		_putchar('0');
