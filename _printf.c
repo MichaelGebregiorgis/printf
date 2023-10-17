@@ -39,6 +39,13 @@ int _printf(const char *format, ...)
 					count_char++;
 				}
 			}
+			else if (*format == 'd' || *format == 'i')
+			{
+				int num = va_arg(lst_args, int);
+
+				print_int(num);
+				count_char++;
+			}
 			else if (*format == '%')
 			{
 				_putchar('%');
