@@ -4,9 +4,9 @@
 
 
 /**
- * 
- *
- *
+ * print_int - prints int
+ * @num: Data type
+ * Return: num values
  */
 
 void print_int(int num)
@@ -23,6 +23,7 @@ void print_int(int num)
 	}
 	int count = 0;
 	int rev = 0;
+
 	while (num > 0)
 	{
 		rev = rev * 10 + num % 10;
@@ -36,14 +37,19 @@ void print_int(int num)
 	}
 }
 
-int _printf(const char* format, ...)
+/**
+ * _printf - Handle d and i specifier
+ * @format: Datat type
+ * Return: number
+ */
+int _printf(const char *format, ...)
 {
 	va_list lst_args;
-	va_start(lst_args, format);
 
+	va_start(lst_args, format);
 	int count = 0;
 
-	while (*format)
+	for (; *format; format++)
 	{
 		if (*format == '%')
 		{
@@ -51,4 +57,25 @@ int _printf(const char* format, ...)
 
 			if (*format == 'd' || *format == 'i')
 			{
-				int num =
+				int num = va_arg(lst_args, int);
+
+				print_int(num);
+				count++;
+			}
+			else
+			{
+				_putchar('%');
+				_putchar(*format);
+				count += 2;
+			}
+		}
+		else
+		{
+			_putchar(*format);
+			count++;
+		}
+	}
+
+	va_end(lst_args);
+	return (count);
+}
