@@ -1,11 +1,18 @@
 #include "main.h"
 #include <stdarg.h>
 #include <stdio.h>
+
+
 /**
  * _printf - produces output according to a format.
+ * Need to handle c, s, and % conversion specifiers.
+ *
  * @format: Data type
+ *
  * Return: the number of characters printed
  */
+
+
 int _printf(const char *format, ...)
 {
 	unsigned int count_char = 0;
@@ -25,7 +32,6 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 				const char *str = va_arg(lst_args, const char *);
-
 				for (; *str; str++)
 				{
 					_putchar(*str);
