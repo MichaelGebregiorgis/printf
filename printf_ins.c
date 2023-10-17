@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdarg.h>
-#include <limit.h>
+#include <limits.h>
 
 
 /**
@@ -49,6 +49,6 @@ int _printf(const char* format, ...)
 		{
 			format++;
 
-			if (*format == 'd' || format == 'i')
+			if (*format == 'd' || *format == 'i')
 			{
 				int num =
